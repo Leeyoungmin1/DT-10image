@@ -1,0 +1,29 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  z-index: 50;
+}
+
+.navbar .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-shadow: 7px 6px 4px rgba(0, 0, 0, 0.7);
+}
+
+.navbar .links a {
+  margin-left: 24px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar .links a:hover {
+  text-decoration: underline;
+}
