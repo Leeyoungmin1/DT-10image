@@ -28,7 +28,7 @@ const ParticleEffect = ({ images }) => {
       particle.style.height = `${size}px`;
       particle.style.top = `${top}%`;
       particle.style.left = `-${leftOffset + 30}px`; // 왼쪽에서 다양하게 시작
-      particle.style.opacity = Math.random() * 0.5 + 0.5; // 0.5~1
+      particle.style.opacity = Math.random() * 0.5 + 0.1; // 0.5~1
       particle.style.pointerEvents = 'none';
       particle.style.animation = `floatRight ${
         5 + Math.random() * 3

@@ -49,12 +49,13 @@ function App() {
         const newFire = {
           id: nextId,
           x: `${Math.random() * 70 + 10}%`,
-          y: `${Math.random() * 40 + 10}%`,
+          y: `${Math.random() * 30 + 15}%`,
+          size: Math.random() * 40 + 50,
         };
         return [...prev, newFire];
       });
       setNextId((id) => id + 1);
-    }, 1000);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [fires, nextId, showMessage]); // ✅ showMessage도 의존성에 포함
@@ -125,6 +126,7 @@ function App() {
             id={fire.id}
             x={fire.x}
             y={fire.y}
+            size={fire.size}
             onClick={handleFireClick}
           />
         ))}
