@@ -6,6 +6,10 @@ import Navbar from './components/Navbar';
 import bgImage from './assets/10img-bg-black.png';
 import bgImageRed from './assets/10img-bg-red.png';
 import bgImageBlue from './assets/10img-bg-blue.png';
+import ParticleEffect from './components/ParticleEffect';
+import ember from './assets/ember.png';
+import ash from './assets/ash.png';
+import clover from './assets/clover.png';
 
 function App() {
   const [fires, setFires] = useState([{ id: 1, x: '50%', y: '70%' }]);
@@ -80,6 +84,9 @@ function App() {
           backgroundPosition: 'center',
         }}
       >
+        {backgroundType === 'default' && <ParticleEffect image={ash} />}
+        {backgroundType === 'red' && <ParticleEffect image={ember} />}
+        {backgroundType === 'blue' && <ParticleEffect image={clover} />}
         {/* 텍스트 */}
         <div
           style={{
@@ -91,7 +98,7 @@ function App() {
             fontSize: '64px',
             fontWeight: 'bold',
             zIndex: 10,
-            textShadow: '4px 4px 8px rgba(0, 0, 0, 0.7)',
+            // textShadow: '4px 4px 8px rgba(0, 0, 0, 0.7)',
           }}
         >
           작은 불에서 시작됐다.

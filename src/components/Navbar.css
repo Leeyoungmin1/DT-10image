@@ -14,7 +14,7 @@
 .navbar .title {
   font-size: 1.25rem;
   font-weight: bold;
-  text-shadow: 7px 6px 4px rgba(0, 0, 0, 0.7);
+  /* text-shadow: 7px 6px 4px rgba(0, 0, 0, 0.7); */
 }
 
 .navbar .links a {
