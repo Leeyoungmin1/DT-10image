@@ -17,7 +17,7 @@ export default function FireMessage() {
         top: '17%',
       }}
     >
-      👉 이곳을 눌러 이동!
+      🍀 당신의 작은 관심이 큰 문제를 예방할 수 있습니다!
     </div>
   );
 }
