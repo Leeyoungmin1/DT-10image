@@ -1,4 +1,4 @@
-import './Navbar.css'; // CSS 모듈을 따로 만들어서 연결
+import './Navbar.css';
 
 export default function Navbar() {
   return (

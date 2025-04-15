@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FireComponent from './components/FireComponent';
 import FireMessage from './components/FireMessage';
 import ToastMessage from './components/ToastMessage';
@@ -8,28 +8,55 @@ import bgImageRed from './assets/10img-bg-red.png';
 import bgImageBlue from './assets/10img-bg-blue.png';
 
 function App() {
-  const [showFire, setShowFire] = useState(true);
+  const [fires, setFires] = useState([{ id: 1, x: '50%', y: '70%' }]);
+  const [nextId, setNextId] = useState(2);
   const [showMessage, setShowMessage] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [hasExceededLimit, setHasExceededLimit] = useState(false);
   const [backgroundType, setBackgroundType] = useState('default');
 
-  const handleFireClick = () => {
-    setBackgroundType('blue');
-    setShowMessage(true);
-    setShowFire(false); // 🔥 불 사라지게 함
+  // 🔥 불 클릭 시 제거 + 모두 제거 시 배경 변경 및 메시지 표시
+  const handleFireClick = (id) => {
+    setFires((prev) => {
+      const updated = prev.filter((f) => f.id !== id);
+      if (updated.length === 0) {
+        setShowMessage(true);
+        setBackgroundType('blue'); // 🟦 파란 배경 전환
+      }
+      return updated;
+    });
   };
 
-  const handleFireMaxSize = () => {
-    setBackgroundType('red');
-    setShowToast(true);
-    setShowFire(false); // 🔥 불 사라지게 함
-  };
+  // 🔁 불 자동 생성 (불이 존재하며 20개 미만이고, 메시지가 안 떠 있을 때만)
+  useEffect(() => {
+    if (fires.length >= 20 || showMessage) return;
 
-  const handleToastClose = () => {
-    setShowToast(false);
-  };
+    const interval = setInterval(() => {
+      setFires((prev) => {
+        if (prev.length >= 20) return prev;
+        const newFire = {
+          id: nextId,
+          x: `${Math.random() * 70 + 10}%`,
+          y: `${Math.random() * 40 + 10}%`,
+        };
+        return [...prev, newFire];
+      });
+      setNextId((id) => id + 1);
+    }, 1000);
 
-  // ✅ ✅ ✅ 여기서 배경 이미지 조건 설정
+    return () => clearInterval(interval);
+  }, [fires, nextId, showMessage]); // ✅ showMessage도 의존성에 포함
+
+  // 🔔 불이 20개 이상 → 경고 Toast + 빨간 배경
+  useEffect(() => {
+    if (fires.length >= 20 && !hasExceededLimit) {
+      setHasExceededLimit(true);
+      setShowToast(true);
+      setBackgroundType('red');
+    }
+  }, [fires.length, hasExceededLimit]);
+
+  // 🎨 배경 이미지 조건
   let backgroundImage;
   switch (backgroundType) {
     case 'red':
@@ -44,16 +71,16 @@ function App() {
 
   return (
     <>
-      <Navbar /> {/* ✅ 네비게이션 바를 가장 위에 표시 */}
+      <Navbar />
       <div
-        className="w-screen h-screen relative pt-20" // ✅ 네비에 안 가리게 패딩
+        className="w-screen h-screen relative pt-20 overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        {/* ✅ 이 부분에 글씨 추가 */}
+        {/* 텍스트 */}
         <div
           style={{
             position: 'absolute',
@@ -70,21 +97,27 @@ function App() {
           작은 불에서 시작됐다.
         </div>
 
-        {showFire && (
+        {/* 🔥 불 렌더링 */}
+        {fires.map((fire) => (
           <FireComponent
+            key={fire.id}
+            id={fire.id}
+            x={fire.x}
+            y={fire.y}
             onClick={handleFireClick}
-            onMaxSize={handleFireMaxSize}
           />
-        )}
+        ))}
 
-        {showMessage && <FireMessage />}
-
+        {/* 🔔 토스트 경고 */}
         {showToast && (
           <ToastMessage
-            message="작은 불을 무시하면 돌이킬 수 없는 피해가 생깁니다"
-            onClick={handleToastClose}
+            message="🔥 불이 너무 많아 제어할 수 없습니다!"
+            onClick={() => setShowToast(false)}
           />
         )}
+
+        {/* 🟦 유도 메시지 (불이 모두 꺼졌을 때) */}
+        {showMessage && <FireMessage />}
       </div>
     </>
   );

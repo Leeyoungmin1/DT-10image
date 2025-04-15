@@ -1,20 +1,17 @@
 export default function ToastMessage({ message, onClick }) {
   return (
     <div
-      onClick={() => {
-        window.open('https://example.com', '_blank'); // 원하는 링크로 수정 가능
-        onClick(); // 상태 초기화 용도
-      }}
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-white text-black shadow-lg px-6 py-3 rounded-lg z-50 font-semibold text-sm cursor-pointer hover:bg-gray-100 transition"
+      onClick={onClick}
+      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer"
       style={{
-        top: '17%',
+        backgroundColor: 'rgba(221, 1, 1, 0.85)',
         color: 'white',
-        fontSize: '32px',
-        backgroundColor: 'rgba(221, 1, 1, 0.8)',
-        padding: '20px 32px',
-        // border: 'solid white 5px',
+        top: '17%',
+        fontSize: '24px',
+        padding: '16px 28px',
         borderRadius: '99px',
         boxShadow: '0 8px 12px rgba(0,0,0,0.6)',
+        transition: 'all 0.3s',
       }}
     >
       {message}
