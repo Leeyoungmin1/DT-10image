@@ -7,9 +7,17 @@ import bgImage from './assets/10img-bg-black.png';
 import bgImageRed from './assets/10img-bg-red.png';
 import bgImageBlue from './assets/10img-bg-blue.png';
 import ParticleEffect from './components/ParticleEffect';
-import ember from './assets/ember.png';
-import ash from './assets/ash.png';
-import clover from './assets/clover.png';
+import ember1 from './assets/ember1.png';
+import ember2 from './assets/ember2.png';
+import ember3 from './assets/ember3.png';
+
+import ash1 from './assets/ash1.png';
+import ash2 from './assets/ash2.png';
+import ash3 from './assets/ash3.png';
+
+import clover1 from './assets/clover1.png';
+import clover2 from './assets/clover2.png';
+import clover3 from './assets/clover3.png';
 
 function App() {
   const [fires, setFires] = useState([{ id: 1, x: '50%', y: '70%' }]);
@@ -84,9 +92,15 @@ function App() {
           backgroundPosition: 'center',
         }}
       >
-        {backgroundType === 'default' && <ParticleEffect image={ash} />}
-        {backgroundType === 'red' && <ParticleEffect image={ember} />}
-        {backgroundType === 'blue' && <ParticleEffect image={clover} />}
+        {backgroundType === 'default' && (
+          <ParticleEffect images={[ash1, ash2, ash3]} />
+        )}
+        {backgroundType === 'red' && (
+          <ParticleEffect images={[ember1, ember2, ember3]} />
+        )}
+        {backgroundType === 'blue' && (
+          <ParticleEffect images={[clover1, clover2, clover3]} />
+        )}
         {/* 텍스트 */}
         <div
           style={{
