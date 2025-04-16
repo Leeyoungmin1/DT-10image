@@ -20,7 +20,7 @@ import clover2 from './assets/clover2.png';
 import clover3 from './assets/clover3.png';
 
 function App() {
-  const [fires, setFires] = useState([{ id: 1, x: '50%', y: '70%' }]);
+  const [fires, setFires] = useState([{ id: 1, x: '10%', y: '30%' }]);
   const [nextId, setNextId] = useState(2);
   const [showMessage, setShowMessage] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -49,13 +49,15 @@ function App() {
         const newFire = {
           id: nextId,
           x: `${Math.random() * 70 + 10}%`,
-          y: `${Math.random() * 30 + 15}%`,
+          y: `${Math.random() * 30 + 10}%`,
           size: Math.random() * 40 + 50,
         };
+        console.log(...prev);
+        console.log(Math.random());
         return [...prev, newFire];
       });
       setNextId((id) => id + 1);
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [fires, nextId, showMessage]); // ✅ showMessage도 의존성에 포함
@@ -113,7 +115,7 @@ function App() {
             fontSize: '64px',
             fontWeight: 'bold',
             zIndex: 10,
-            // textShadow: '4px 4px 8px rgba(0, 0, 0, 0.7)',
+            textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)',
           }}
         >
           작은 불에서 시작됐다.

@@ -21,14 +21,14 @@ const ParticleEffect = ({ images }) => {
 
       // 🎲 랜덤 위치 - 화면 위쪽부터 아래쪽까지 넓게
       const top = Math.random() * 100; // 0~100%
-      const leftOffset = Math.random() * 100; // 시작 위치 다양화
+      const leftOffset = Math.random() * 200; // 시작 위치 다양화
 
       particle.style.position = 'absolute';
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.top = `${top}%`;
-      particle.style.left = `-${leftOffset + 30}px`; // 왼쪽에서 다양하게 시작
-      particle.style.opacity = Math.random() * 0.5 + 0.1; // 0.5~1
+      particle.style.left = `-${leftOffset * 10}px`; // 왼쪽에서 다양하게 시작
+      particle.style.opacity = Math.random() * 0.5 + 0.5; // 0.5~1
       particle.style.pointerEvents = 'none';
       particle.style.animation = `floatRight ${
         5 + Math.random() * 3
