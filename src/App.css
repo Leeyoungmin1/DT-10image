@@ -1,0 +1,18 @@
+/* .responsive-title {
+  font-size: 28px;
+} */
+
+.responsive-title {
+  font-size: 64px;
+}
+/* @media (min-width: 360px) {
+  .responsive-title {
+    font-size: 24px;
+  }
+} */
+
+@media (max-width: 360px) {
+  .responsive-title {
+    font-size: 24px;
+  }
+}

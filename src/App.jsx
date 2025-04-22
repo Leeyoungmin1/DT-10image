@@ -19,6 +19,8 @@ import clover1 from './assets/clover1.png';
 import clover2 from './assets/clover2.png';
 import clover3 from './assets/clover3.png';
 
+import './App.css';
+
 function App() {
   const [fires, setFires] = useState([{ id: 1, x: '10%', y: '30%' }]);
   const [nextId, setNextId] = useState(2);
@@ -106,19 +108,20 @@ function App() {
         )}
         {/* 텍스트 */}
         <div
+          className="responsive-title"
           style={{
             position: 'absolute',
             top: '40%',
             left: '10%',
             transform: 'translateY(-50%)',
             color: 'white',
-            fontSize: '64px',
+            // fontSize: '64px',
             fontWeight: 'bold',
             zIndex: 10,
             textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5)',
           }}
         >
-          작은 불에서 시작됐다.
+          <p>작은 불에서 시작됐다.</p>
         </div>
 
         {/* 🔥 불 렌더링 */}
