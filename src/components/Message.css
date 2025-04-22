@@ -1,0 +1,11 @@
+.message-style {
+  font-size: 24px;
+  border-radius: 99px;
+}
+
+@media (max-width: 360px) {
+  .message-style {
+    font-size: 14px;
+    border-radius: 16px;
+  }
+}
