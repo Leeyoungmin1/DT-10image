@@ -2,7 +2,10 @@ import './Message.css';
 
 export default function FireMessage() {
   const handleClick = () => {
-    window.open('https://example.com', '_blank'); // 링크 이동
+    window.open(
+      'https://www.safekorea.go.kr/idsiSFK/neo/main/main.html',
+      '_blank'
+    ); // 링크 이동
   };
 
   return (
